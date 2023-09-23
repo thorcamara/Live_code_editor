@@ -14,3 +14,16 @@ body {
   height: 60px;
   border-bottom: 5px solid #333;
 }
+
+.header .title {
+  padding: 0.5rem;
+}
+
+.header .title .main-title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.header .title .sub-title {
+  font-size: 14px;
+}
