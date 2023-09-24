@@ -67,3 +67,24 @@ function initializeCodeEditors() {
   };
   return codeEditors;
 }
+
+function setupLivePreviewStudio() {
+  const codeEditors = initializeCodeEditors();
+
+  CodeMirror.on(codeEditors.html, 'change', () => {
+    updateLiveHTMLPreview(codeEditors);
+  });
+
+  CodeMirror.on(codeEditors.css, 'change', () => {
+    updateLiveCSSPreview(codeEditors);
+  });
+
+  CodeMirror.on(codeEditors.js, 'change', () => {
+    updateLiveJSPreview(codeEditors);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  initializeLivePreview();
+  setupLivePreviewStudio();
+});
