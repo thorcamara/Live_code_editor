@@ -17,3 +17,53 @@ function initializeLivePreview() {
 function updateLiveHTMLPreview(codeEditors) {
   livePreviewFrame.contentWindow.document.body.innerHTML = codeEditors.html.getValue();
 }
+
+function updateLiveCSSPreview(codeEditors) {
+  const styleElement = livePreviewFrame.contentWindow.document.getElementById('live-preview-style');
+  styleElement.innerHTML = codeEditors.css.getValue();
+}
+
+function updateLiveJSPreview(codeEditors) {
+  const scriptElement = document.createElement('script');
+  scriptElement.innerHTML = codeEditors.js.getValue();
+  livePreviewFrame.contentWindow.document.body.appendChild(scriptElement);
+}
+
+function initializeCodeEditors() {
+  function getDefaultOptions(object) {
+    const defaultOptions = {
+      lineNumbers: true,
+      autoCloseTags: true,
+      autoCloseBrackets: true,
+      theme: 'panda-syntax'
+    };
+    if (object) {
+      const keys = Object.keys(object);
+      for (const key of keys) {
+        defaultOptions[key] = object[key];
+      }
+    }
+    return defaultOptions;
+  }
+
+  const codeEditors = {
+    html: CodeMirror(htmlEditor, getDefaultOptions({
+      mode: 'text/html',
+      value: '',
+    })),
+    css: CodeMirror(cssEditor, getDefaultOptions({
+      mode: 'css',
+      value: '',
+      extraKeys: { 'Ctrl-Space': 'autocomplete' },
+      hintOptions: {
+        completeSingle: false,
+        closeOnUnfocus: false
+      }
+    })),
+    js: CodeMirror(jsEditor, getDefaultOptions({
+      mode: 'javascript',
+      value: ''
+    })),
+  };
+  return codeEditors;
+}
