@@ -43,3 +43,20 @@ body {
 .editor #html {
   border-right: 1px solid #777;
 }
+
+.editor #css {
+  border-left: 20px solid #333;
+  border-right: 1px solid #777;
+}
+
+.editor #js {
+  border-left: 20px solid #333;
+}
+
+.code-box {
+  position: relative;
+  height: calc(50vh - 4.6rem);
+  border-top: 1px solid #000;
+  border-bottom: 10px solid #333;
+  overflow: hidden;
+}
